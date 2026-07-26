@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import API from '../../api/axios';
 import LoadingSpinner from '../../components/LoadingSpinner';
-import { Building2, UserCheck, Users, PlusCircle, Settings, ArrowRight } from 'lucide-react';
+import { Building2, UserCheck, Users, PlusCircle, KeyRound, Shield, ArrowRight } from 'lucide-react';
 
 const AdminDashboardPage = () => {
   const [counts, setCounts] = useState({ depts: 0, heads: 0, emps: 0 });
@@ -34,10 +34,15 @@ const AdminDashboardPage = () => {
 
   return (
     <div>
-      <div className="page-header">
+      <div className="page-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-center', flexWrap: 'wrap', gap: '1rem' }}>
         <div>
           <h1 className="page-title">Admin Dashboard</h1>
           <p className="page-subtitle">Central management control panel for Office Manager records.</p>
+        </div>
+        <div>
+          <Link to="/admin/change-password" className="btn btn-secondary" style={{ gap: '0.5rem' }}>
+            <KeyRound size={18} /> Change Password
+          </Link>
         </div>
       </div>
 
@@ -102,8 +107,26 @@ const AdminDashboardPage = () => {
           </div>
         </div>
       </div>
+
+      <div className="card" style={{ background: 'linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%)', border: '1px solid rgba(56, 189, 248, 0.2)' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <div style={{ padding: '0.85rem', background: 'rgba(56, 189, 248, 0.12)', borderRadius: '12px', color: 'var(--accent-primary)' }}>
+              <Shield size={28} />
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.2rem', fontWeight: 700 }}>Admin Security & Account Settings</h3>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.875rem' }}>Update your administrator account password anytime to maintain system security.</p>
+            </div>
+          </div>
+          <Link to="/admin/change-password" className="btn btn-primary" style={{ gap: '0.5rem' }}>
+            <KeyRound size={16} /> Password Settings <ArrowRight size={16} />
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default AdminDashboardPage;
+

@@ -36,6 +36,24 @@ export const checkAuthMe = createAsyncThunk(
   }
 );
 
+export const changePassword = createAsyncThunk(
+  'auth/changePassword',
+  async ({ currentPassword, newPassword, confirmPassword }, { rejectWithValue }) => {
+    try {
+      const response = await API.put('/auth/change-password', {
+        currentPassword,
+        newPassword,
+        confirmPassword
+      });
+      return response.data.message;
+    } catch (error) {
+      const message = error.response?.data?.message || 'Failed to update password.';
+      return rejectWithValue(message);
+    }
+  }
+);
+
+
 const authSlice = createSlice({
   name: 'auth',
   initialState: {

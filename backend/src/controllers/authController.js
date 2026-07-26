@@ -57,8 +57,50 @@ const getMe = async (req, res) => {
   }
 };
 
+const changePassword = async (req, res) => {
+  try {
+    const adminId = req.user.id;
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      return res.status(400).json({ message: 'All fields are required.' });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ message: 'New passwords do not match.' });
+    }
+
+    if (newPassword.length < 6) {
+      return res.status(400).json({ message: 'New password must be at least 6 characters long.' });
+    }
+
+    const admins = await db.query('SELECT * FROM admins WHERE id = ?', [adminId]);
+    if (admins.length === 0) {
+      return res.status(404).json({ message: 'Admin account not found.' });
+    }
+
+    const admin = admins[0];
+    const isMatch = await bcrypt.compare(currentPassword, admin.password_hash);
+    if (!isMatch) {
+      return res.status(400).json({ message: 'Current password is incorrect.' });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const newPasswordHash = await bcrypt.hash(newPassword, salt);
+
+    await db.query('UPDATE admins SET password_hash = ? WHERE id = ?', [newPasswordHash, adminId]);
+
+    res.json({ message: 'Password updated successfully.' });
+  } catch (error) {
+    console.error('Change password error:', error);
+    res.status(500).json({ message: 'Server error updating password.' });
+  }
+};
+
 module.exports = {
   login,
   logout,
-  getMe
+  getMe,
+  changePassword
 };
+

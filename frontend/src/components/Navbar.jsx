@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../redux/slices/authSlice';
-import { Building2, Users, UserCheck, Shield, LogOut, LogIn, LayoutDashboard } from 'lucide-react';
+import { Building2, Users, UserCheck, Shield, LogOut, LogIn, LayoutDashboard, KeyRound } from 'lucide-react';
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -51,6 +51,12 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li>
+                <NavLink to="/admin/change-password" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`} title="Change Admin Password">
+                  <KeyRound size={18} />
+                  <span>Password</span>
+                </NavLink>
+              </li>
+              <li>
                 <span className="nav-admin-badge">Admin</span>
               </li>
               <li>
@@ -73,5 +79,6 @@ const Navbar = () => {
     </nav>
   );
 };
+
 
 export default Navbar;

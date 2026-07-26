@@ -26,6 +26,7 @@ import AdminDepartmentHeadsPage from './pages/admin/AdminDepartmentHeadsPage';
 import DepartmentHeadFormPage from './pages/admin/DepartmentHeadFormPage';
 import AdminEmployeesPage from './pages/admin/AdminEmployeesPage';
 import EmployeeFormPage from './pages/admin/EmployeeFormPage';
+import ChangePasswordPage from './pages/admin/ChangePasswordPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -58,6 +59,7 @@ function App() {
           {/* Admin Protected Routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+            <Route path="/admin/change-password" element={<ChangePasswordPage />} />
             
             <Route path="/admin/departments" element={<AdminDepartmentsPage />} />
             <Route path="/admin/departments/new" element={<DepartmentFormPage />} />
@@ -80,5 +82,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
