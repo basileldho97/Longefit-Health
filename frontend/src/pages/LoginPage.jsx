@@ -99,19 +99,6 @@ const LoginPage = () => {
             )}
           </button>
         </form>
-
-        <div style={{
-          marginTop: '1.75rem',
-          paddingTop: '1.25rem',
-          borderTop: '1px solid var(--border-color)',
-          fontSize: '0.85rem',
-          color: 'var(--text-muted)',
-          textAlign: 'center'
-        }}>
-          <strong>Default Admin Credentials:</strong><br />
-          Email: <span style={{ color: 'var(--text-secondary)' }}>admin@officemanager.com</span><br />
-          Password: <span style={{ color: 'var(--text-secondary)' }}>Admin@123</span>
-        </div>
       </div>
     </div>
   );

@@ -7,10 +7,10 @@ const initialUser = localStorage.getItem('office_manager_user')
   : null;
 
 export const loginAdmin = createAsyncThunk(
-  'auth/loginAdmin',
+  'auth/admin-login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
-      const response = await API.post('/auth/login', { email, password });
+      const response = await API.post('/auth/admin-login', { email, password });
       const { token, user } = response.data;
       localStorage.setItem('office_manager_token', token);
       localStorage.setItem('office_manager_user', JSON.stringify(user));

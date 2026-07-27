@@ -10,6 +10,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 
+
 // Public Detail/List Pages
 import DepartmentListPage from './pages/departments/DepartmentListPage';
 import DepartmentDetailPage from './pages/departments/DepartmentDetailPage';
@@ -45,7 +46,8 @@ function App() {
         <Routes>
           {/* Public Routes */}
           <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/admin-login" element={<LoginPage />} />
+
 
           <Route path="/departments" element={<DepartmentListPage />} />
           <Route path="/departments/:id" element={<DepartmentDetailPage />} />
@@ -60,7 +62,7 @@ function App() {
           <Route element={<ProtectedRoute />}>
             <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
             <Route path="/admin/change-password" element={<ChangePasswordPage />} />
-            
+
             <Route path="/admin/departments" element={<AdminDepartmentsPage />} />
             <Route path="/admin/departments/new" element={<DepartmentFormPage />} />
             <Route path="/admin/departments/:id/edit" element={<DepartmentFormPage />} />

@@ -11,7 +11,7 @@ const Navbar = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/login');
+    navigate('/admin-login');
   };
 
   return (
@@ -23,26 +23,35 @@ const Navbar = () => {
         </Link>
 
         <ul className="nav-links">
-          <li>
-            <NavLink to="/departments" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-              <Building2 size={18} />
-              <span>Departments</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/department-heads" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-              <UserCheck size={18} />
-              <span>Department Heads</span>
-            </NavLink>
-          </li>
-          <li>
-            <NavLink to="/employees" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-              <Users size={18} />
-              <span>Employees</span>
-            </NavLink>
-          </li>
+          {!isAuthenticated ? (
+            <>
+              <li>
+                <NavLink to="/departments" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  <Building2 size={18} />
+                  <span>Departments</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/department-heads" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  <UserCheck size={18} />
+                  <span>Department Heads</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/employees" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  <Users size={18} />
+                  <span>Employees</span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="/admin-login" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+                  <Shield size={18} />
+                  <span>Admin Login</span>
+                </NavLink>
+              </li>
+            </>
 
-          {isAuthenticated ? (
+          ) : (
             <>
               <li>
                 <NavLink to="/admin/dashboard" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
@@ -66,13 +75,6 @@ const Navbar = () => {
                 </button>
               </li>
             </>
-          ) : (
-            <li>
-              <NavLink to="/login" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
-                <Shield size={18} />
-                <span>Admin Login</span>
-              </NavLink>
-            </li>
           )}
         </ul>
       </div>

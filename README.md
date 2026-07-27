@@ -112,7 +112,7 @@ A comprehensive full-stack Department & Staff Management System built with **Rea
 | `/department-heads/:id` | Department Head Detail & Direct Reports |
 | `/employees` | Staff Employee Directory |
 | `/employees/:id` | Employee Profile Detail |
-| `/login` | Admin Authentication Page |
+| `/admin-login` | Admin Authentication Page |
 
 ### Protected Admin Routes
 | Path | Description |
@@ -133,7 +133,7 @@ A comprehensive full-stack Department & Staff Management System built with **Rea
 ## Backend API Endpoints
 
 ### Authentication
-- `POST /api/auth/login` - Authenticate admin & return JWT
+- `POST /api/auth/admin-login` - Authenticate admin & return JWT
 - `POST /api/auth/logout` - Sign out
 - `GET  /api/auth/me` - Get logged-in admin user info *(Protected)*
 
